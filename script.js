@@ -32,65 +32,76 @@ function limitTextArea(valor) {
 const textArea = document.getElementById('textarea');
 textArea.addEventListener('keyup', limitTextArea);
 
-// const nome = document.querySelector('#input-name');
-// const sobrenome = document.querySelector('#input-lastname');
-// const email = document.querySelector('#input-email');
-// const casa = document.querySelector('#house');
-// const familia = document.querySelector('#label-family');
-// const conteudo = document.querySelector('#label-content');
-// const avaliacao = document.querySelector('#label-rate');
-// const observacoes = document.querySelector('#textarea');
-// const forms = document.querySelector('#form-data');
+const nome = document.querySelector('#input-name');
+const sobrenome = document.querySelector('#input-lastname');
+const email = document.querySelector('#input-email');
+const casa = document.querySelector('#house');
+const familia = document.querySelectorAll('.family');
+const conteudo = document.querySelectorAll('.subject');
+const avaliacao = document.querySelectorAll('.rate');
+const observacoes = document.querySelector('#textarea');
+const forms = document.querySelector('#form-data');
 
-// function getCasa() {
-//   return casa.options[casa.selectedIndex].value;
-// }
+function getCasa() {
+  return casa.options[casa.selectedIndex].value;
+}
 
-// function getFamilia () {
-//   for (let i = 0; i < familia.length; i += 1) {
-//     if (familia[i].checked) {
-//       return familia[i].value;
-//     }
-//   }
-// }
+function getFamilia() {
+  for (let i = 0; i < familia.length; i += 1) {
+    if (familia[i].checked) {
+      return familia[i].value;
+    }
+  }
+}
 
-// function getConteudo () {
-//   for (let i = 0; i < conteudo.length; i += 1) {
-//     if (conteudo[i].checked) {
-//       return conteudo[i].value;
-//     }
-//   }
-// }
+function getConteudo() {
+  const conteudoValue = [];
+  for (let i = 0; i < conteudo.length; i += 1) {
+    if (conteudo[i].checked) {
+      conteudoValue.push(conteudo[i].value);
+    }
+  }
+  return conteudoValue.join(', ');
+}
 
-// function getAvaliacao() {
-//   return avaliacao.options[avaliacao.selectedIndex].value;
-// }
+function getAvaliacao() {
+  for (let i = 0; i < avaliacao.length; i += 1) {
+    if (avaliacao[i].checked) {
+      return avaliacao[i].value;
+    }
+  }
+}
 
-// const pNomeSobrenome = document.createElement('p');
-// const pEmail = document.createElement('p');
-// const pCasa = document.createElement('p');
-// const pFamilia = document.createElement('p');
-// const pConteudo = document.createElement('p');
-// const pAvaliacao = document.createElement('p');
-// const pObservacoes = document.createElement('p');
+const pNomeSobrenome = document.createElement('p');
+const pEmail = document.createElement('p');
+const pCasa = document.createElement('p');
+const pFamilia = document.createElement('p');
+const pConteudo = document.createElement('p');
+const pAvaliacao = document.createElement('p');
+const pObservacoes = document.createElement('p');
 
-// function addItemForms (e) {
-//   e.preventDefault();
-//   pNomeSobrenome.innerText = 'Nome: ' + nome.value + sobrenome.value;
-//   pEmail.innerText = 'Email: ' + email.value;
-//   pCasa.innerText = 'Casa :' + getCasa();
-//   pFamilia.innerText = 'Familia: ' + getFamilia();
-//   pConteudo.innerText = 'Matérias: ' + getConteudo();
-//   pAvaliacao.innerText = 'Avaliação: ' + getAvaliacao();
-//   pObservacoes.innerText = 'Observações: ' + observacoes.value;
-//   forms.appendChild(pNomeSobrenome);
-//   forms.appendChild(pEmail);
-//   forms.appendChild(pCasa);
-//   forms.appendChild(pFamilia);
-//   forms.appendChild(pConteudo);
-//   forms.appendChild(pAvaliacao);
-//   forms.appendChild(pObservacoes);
-//   console.log('Oi');
-// }
+function addItemForms (e) {
+  e.preventDefault();
+  pNomeSobrenome.innerText = `Nome: ${nome.value} ${sobrenome.value}`;
+  pEmail.innerText = `Email: ${email.value}`;
+  pCasa.innerText = `Casa: ${getCasa()}`;
+  pFamilia.innerText = `Família: ${getFamilia()}`;
+  pConteudo.innerText = `Matérias: ${getConteudo()}`;
+  pAvaliacao.innerText = `Avaliação: ${getAvaliacao()}`;
+  pObservacoes.innerText = `Observações: ${observacoes.value}`;
+  forms.appendChild(pNomeSobrenome);
+  forms.appendChild(pEmail);
+  forms.appendChild(pCasa);
+  forms.appendChild(pFamilia);
+  forms.appendChild(pConteudo);
+  forms.appendChild(pAvaliacao);
+  forms.appendChild(pObservacoes);
+}
 
-// bntEnviar.addEventListener('click', addItemForms);
+function clearForms() {
+  const evaluationForms = document.querySelector('#evaluation-form');
+  evaluationForms.remove();
+}
+
+bntEnviar.addEventListener('click', addItemForms);
+bntEnviar.addEventListener('click', clearForms);
