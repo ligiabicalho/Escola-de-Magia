@@ -80,7 +80,7 @@ const pConteudo = document.createElement('p');
 const pAvaliacao = document.createElement('p');
 const pObservacoes = document.createElement('p');
 
-function addItemForms (e) {
+function addItemForms(e) {
   e.preventDefault();
   pNomeSobrenome.innerText = `Nome: ${nome.value} ${sobrenome.value}`;
   pEmail.innerText = `Email: ${email.value}`;
