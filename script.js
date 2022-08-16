@@ -100,7 +100,7 @@ function addItemForms (e) {
 
 function clearForms() {
   const evaluationForms = document.querySelector('#evaluation-form');
-  evaluationForms.remove();
+  evaluationForms.style.display = 'none';
 }
 
 bntEnviar.addEventListener('click', addItemForms);
